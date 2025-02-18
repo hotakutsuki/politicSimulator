@@ -74,7 +74,7 @@ const SaliderNumeric = React.forwardRef(({ val, setVal, valName, unit, subtitle,
                 <label>{valueLabelFormat(val, unit)}</label>
                 <label className='text-sm' >{subtitle}</label>
             </div>
-            <Button variant='text' onClick={setRandom}><CasinoIcon className='text-black' /></Button>
+            <Button variant='text' onClick={setRandom}><CasinoIcon color="action" /></Button>
         </div>
     );
 });

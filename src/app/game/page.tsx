@@ -48,7 +48,7 @@ const ConfiguracionPantalla: React.FC = () => {
             <Button variant='text' onClick={e => {
               e.stopPropagation(); //skip close accordion
               resourcesRef.current?.setAllRand();
-            }}><CasinoIcon className='text-black' /></Button>
+            }}><CasinoIcon color="action" /></Button>
           </div>
         </AccordionSummary>
         <AccordionDetails>

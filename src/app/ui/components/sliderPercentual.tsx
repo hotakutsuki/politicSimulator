@@ -69,7 +69,7 @@ export default function SliderPercentual({ val, setVal, valName, available, subt
                 }
                 setVal(val + available);
                 setSliderValue(calculateInverseScaledValue(val + available));
-            }}><ArrowOutwardIcon className='text-black' /></Button>
+            }}><ArrowOutwardIcon color="action" /></Button>
         </div>
     );
 }
