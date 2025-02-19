@@ -37,69 +37,87 @@ function getPowerProduction(data: ProductionConsumption): number {
         data.energy_production.wind
 }
 
+const style = {
+    cx: 100,
+    paddingAngle: 2,
+    cornerRadius: 5,
+    highlightScope: { fade: 'global', highlight: 'item' },
+    faded: { additionalRadius: -1, color: 'gray' },
+}
+
 const ProdConsuCard: React.FC<ProdConsuCardProps> = ({ data }) => {
     const cur: ProductionConsumption = data[0]
 
-    const available = getPowerProduction(cur) + cur.energy_import
-    const consumption = cur.energy_consumption + cur.energy_export
+    const energyAvailable = getPowerProduction(cur) + cur.energy_import
+    const energyConsumption = cur.energy_consumption + cur.energy_export
+    const remainingEnergy = energyAvailable - energyConsumption
 
-    const remaining = available - consumption
+    const agroAvailable = cur.agricultural_production + cur.agricultural_import
+    const agroConsumption = cur.agricultural_consumption + cur.agricultural_export
+    const remainingAgro = agroAvailable - agroConsumption
 
-    const series = [
+    const energySeries = [
         {
-            cx: 100,
+            ...style,
             innerRadius: 25,
             outerRadius: 45,
-            paddingAngle: 2,
-            cornerRadius: 5,
-            highlightScope: { fade: 'global', highlight: 'item' },
-            faded: { additionalRadius: -1, color: 'gray' },
             data: [
                 { label: 'Power Consumption', value: cur.energy_consumption, color: 'Tomato' },
                 { label: 'Power Exported', value: cur.energy_export, color: 'Orange' },
-                remaining > 0 && { label: 'Unused', value: remaining, color: 'transparent' },
+                remainingEnergy > 0 && { label: 'Unused', value: remainingEnergy, color: 'transparent' },
             ],
         },
         {
-            cx: 100,
+            ...style,
+            innerRadius: 50,
+            outerRadius: 65,
             data: [
                 { label: 'Power Generation', value: getPowerProduction(cur), color: 'LimeGreen' },
-                { label: 'Imported', value: cur.energy_import, color: 'CornflowerBlue' },
-                remaining < 0 && { label: 'Deficit', value: -remaining, color: 'red' },
+                { label: 'Power Imported', value: cur.energy_import, color: 'CornflowerBlue' },
+                remainingEnergy < 0 && { label: 'Deficit', value: -remainingEnergy, color: 'red' },
             ],
-            highlightScope: { fade: 'global', highlight: 'item' },
-            faded: { additionalRadius: -1, color: 'gray' },
+        },
+    ];
+
+    const productionSeries = [
+        {
+            ...style,
+            innerRadius: 25,
+            outerRadius: 45,
+            data: [
+                { label: 'Agro Consumption', value: cur.agricultural_production, color: 'Tomato' },
+                { label: 'Agro Exported', value: cur.agricultural_export, color: 'Orange' },
+                remainingAgro > 0 && { label: 'Unused', value: remainingAgro, color: 'transparent' },
+            ],
+        },
+        {
+            ...style,
             innerRadius: 50,
-            outerRadius: 70,
-            paddingAngle: 2,
-            cornerRadius: 5,
+            outerRadius: 65,
+            data: [
+                { label: 'Agro Generation', value: cur.agricultural_consumption, color: 'LimeGreen' },
+                { label: 'Agro Imported', value: cur.agricultural_import, color: 'CornflowerBlue' },
+                remainingAgro < 0 && { label: 'Deficit', value: -remainingAgro, color: 'red' },
+            ],
         },
     ];
 
     return (
-        <Paper className="bg-green-100 p-5 rounded-xl shadow-md">
+        <Paper elevation={3} className="bg-green-100 p-5 rounded-xl shadow-md">
             <div className="flex flex-col items-end space-y-1">
                 <label className="place-self-start mb-2">
                     Produccion / Consumo
                 </label>
-                {/* {productionDetails(data)} */}
                 <div className='w-full flex flex-row justify-between items-start'>
                     <label className="place-self-start text-xl">
-                        Power
+                        Agricultural
                     </label>
-                    <span className={`place-self-start text-xs ${consumption / available > .9 ? "text-red-500" : "text-green-500"}`}>
-                        Grid load (<NumberFormatter value={consumption / available * 100} /> %)
+                    <span className={`place-self-start ${energyConsumption / energyAvailable > .9 ? "text-red-500" : "text-green-500"}`}>
+                        Agro load (<NumberFormatter value={agroConsumption / agroAvailable * 100} /> %)
                     </span>
-
                 </div>
-                {/* <label className="place-self-start text-sm">
-                    Available (<NumberFormatter value={available} />{" "}MWh)
-                </label>
-                <label className="place-self-start text-sm">
-                    Consumed (<NumberFormatter value={consumption} />{" "}MWh)
-                </label> */}
                 <PieChart
-                    series={series}
+                    series={productionSeries}
                     slotProps={{
                         legend: {
                             itemMarkHeight: 10,
@@ -107,7 +125,25 @@ const ProdConsuCard: React.FC<ProdConsuCardProps> = ({ data }) => {
                     }}
                     height={150}
                 />
-                {/* <Gauge width={100} height={100} value={getEnergyConsumptionPercentage()} /> */}
+                {/* {productionDetails(data)} */}
+                <div className='w-full flex flex-row justify-between items-start'>
+                    <label className="place-self-start text-xl">
+                        Power
+                    </label>
+                    <span className={`place-self-start ${energyConsumption / energyAvailable > .9 ? "text-red-500" : "text-green-500"}`}>
+                        Grid load (<NumberFormatter value={energyConsumption / energyAvailable * 100} /> %)
+                    </span>
+
+                </div>
+                <PieChart
+                    series={energySeries}
+                    slotProps={{
+                        legend: {
+                            itemMarkHeight: 10,
+                        }
+                    }}
+                    height={150}
+                />
             </div>
         </Paper>
     )

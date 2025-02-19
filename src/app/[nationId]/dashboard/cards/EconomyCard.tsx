@@ -88,7 +88,7 @@ const EconomyCard: React.FC<EconomyCardProps> = ({ data }) => {
                     </div>
                     <div>
                         <label className="place-self-start">
-                            unemployment
+                            Unemployment
                         </label>
                         <div className="flex flex-row space-x-2 items-end">
                             <div className="text-xl">

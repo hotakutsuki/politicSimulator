@@ -11,7 +11,7 @@
         },
         "social_variables": {
           "population": 29282037,
-          "middle age": 39.2,
+          "middle_age": 39.2,
           "percentage_under_20": 20,
           "life_expectancy": 78.5,
           "birth_rate": 9.0,
