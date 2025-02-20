@@ -11,6 +11,8 @@ import DistributedVariables, { DistributedVariablesType } from "./distributedVar
 import { Button } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import CasinoIcon from '@mui/icons-material/Casino';
+import { askToAi } from '../../services/ai_server'
+import { CatchingPokemonSharp } from "@mui/icons-material";
 
 const ConfiguracionPantalla: React.FC = () => {
   const orientationRef = React.useRef<{ getData: () => OrientationVariablesType }>(null);
@@ -18,12 +20,15 @@ const ConfiguracionPantalla: React.FC = () => {
   const distributedRef = React.useRef<{ getData: () => DistributedVariablesType, getAvailable: () => number }>(null);
   const [available, setPercentageAvailable] = useState(100);
 
-  const handleStartGame = () => {
+  const handleStartGame = async () => {
     const inicialData = {
       orientation: orientationRef.current?.getData(),
       resources: resourcesRef.current?.getData(),
       distribution: distributedRef.current?.getData(),
     };
+    console.log('asking')
+    const response = await askToAi()
+    console.log('respuesta:', response)
     console.log("Configuración inicial:", inicialData);
     // Aquí iría la lógica para pasar a la simulación del juego
   };
