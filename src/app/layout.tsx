@@ -32,12 +32,12 @@ export default function Layout(props) {
           }}
         >
           <DashboardLayout>
-            <PageContainer>
-              {children}
-            </PageContainer>
+            {/* <PageContainer> */}
+            {children}
+            {/* </PageContainer> */}
           </DashboardLayout>
         </NextAppProvider>
       </body>
-    </html>
+    </html >
   );
 }

@@ -11,8 +11,9 @@ import DistributedVariables, { DistributedVariablesType } from "./distributedVar
 import { Button } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import CasinoIcon from '@mui/icons-material/Casino';
-import { askToAi } from '../../services/ai_server'
-import { CatchingPokemonSharp } from "@mui/icons-material";
+// import { askToAi } from '../../services/ai_server'
+// import { fetchAndSaveChatGPTResponse } from '../../services/api'
+// import { CatchingPokemonSharp } from "@mui/icons-material";
 
 const ConfiguracionPantalla: React.FC = () => {
   const orientationRef = React.useRef<{ getData: () => OrientationVariablesType }>(null);
@@ -20,17 +21,39 @@ const ConfiguracionPantalla: React.FC = () => {
   const distributedRef = React.useRef<{ getData: () => DistributedVariablesType, getAvailable: () => number }>(null);
   const [available, setPercentageAvailable] = useState(100);
 
+  async function sendPromptToChatGPT() {
+    console.log('2')
+    const response = await fetch("/api/GPT", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        prompt: "Genera un informe económico para un país ficticio.",
+        filename: "simulation_result.json",
+      }),
+    });
+    console.log('4', response)
+
+    const data = await response.json();
+    console.log("Archivo guardado:", data);
+  }
+
   const handleStartGame = async () => {
     const inicialData = {
       orientation: orientationRef.current?.getData(),
       resources: resourcesRef.current?.getData(),
       distribution: distributedRef.current?.getData(),
     };
-    console.log('asking')
-    const response = await askToAi()
-    console.log('respuesta:', response)
-    console.log("Configuración inicial:", inicialData);
-    // Aquí iría la lógica para pasar a la simulación del juego
+    //DEPPSEKK
+    // const response = await askToAi()
+    //CHATGPT
+
+    console.log('1')
+    await sendPromptToChatGPT()
+    console.log('5')
+    // const prompt = "Genera un informe sobre el estado económico de una nación ficticia.";
+    // const result = await fetchAndSaveChatGPTResponse(prompt, "simulation_result.json");
+    // console.log("Resultado guardado:", result);
+
   };
 
   return (

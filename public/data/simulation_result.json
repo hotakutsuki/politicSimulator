@@ -1,0 +1,22 @@
+{
+  "id": "chatcmpl-957",
+  "object": "chat.completion",
+  "created": 1740077176,
+  "model": "deepseek-r1:7b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "<think>\n\n</think>\n\n¡Hola! ¿En qué puedo ayudarte hoy? 😊"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 6,
+    "completion_tokens": 18,
+    "total_tokens": 24
+  }
+}

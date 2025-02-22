@@ -52,30 +52,34 @@ const SocialCard: React.FC<SocialPropsCard> = ({ data }) => {
                         </div>
                     </div>
                 </div>
-                <div className='w-full flex flex-row justify-evenly items-center'>
+                <div className='w-full grid grid-cols-2'>
                     <div className="flex flex-col items-center justify-end">
-                        <label className="place-self-start">
-                            Birth Rate
-                            {/* 👶 */}
+                        <label>
+                            Birth Rate👶
                         </label>
                         <NumberFormatter value={cur.birth_rate} decimalPlaces={0} />
+                        {/* <div className="text-xs">
+                            / 1000 people / year
+                        </div> */}
                     </div>
                     <div className="flex flex-col justify-center items-center">
-                        <label className="place-self-start">
-                            Middle Age
+                        <label>
+                            Mortality Rate💀
+                        </label>
+                        <NumberFormatter value={cur.middle_age} decimalPlaces={0} />
+                        {/* <div className="text-xs">
+                            / 1000 people / year
+                        </div> */}
+                    </div>
+                    <div className="flex flex-col justify-center items-center">
+                        <label>
+                            Middle Age🧑🏻
                         </label>
                         <NumberFormatter value={cur.mortality_rate} decimalPlaces={0} />
                     </div>
                     <div className="flex flex-col justify-center items-center">
-                        <label className="place-self-start">
-                            Mortality Rate
-                            {/* 💀 */}
-                        </label>
-                        <NumberFormatter value={cur.middle_age} decimalPlaces={0} />
-                    </div>
-                    <div className="flex flex-col justify-center items-center">
-                        <label className="place-self-start">
-                            Life Expectancy
+                        <label>
+                            Life Expectancy🧑🏻‍🦳
                         </label>
                         <NumberFormatter value={cur.life_expectancy} decimalPlaces={0} />
                     </div>
