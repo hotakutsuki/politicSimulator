@@ -1,0 +1,44 @@
+{
+    "orientation": {
+        "protectionism": 29,
+        "freeMarket": 71,
+        "openBorders": 28,
+        "closeBorders": 72,
+        "stateException": 28,
+        "ruleLaw": 72,
+        "conservatism": 29,
+        "progressivism": 71,
+        "secularState": 27,
+        "religiousInfluence": 73,
+        "socialJustice": 26,
+        "individualMerit": 74,
+        "laborRights": 22,
+        "workFlexibility": 78,
+        "redistributionOfWealth": 22,
+        "privateProperty": 78,
+        "centralization": 24,
+        "decentralization": 76,
+        "tradition": 25,
+        "innovation": 75
+    },
+    "resources": {
+        "PIB": 22433122542.575638,
+        "population": 29282037.10365061,
+        "gasReserves": 1160837862299.867,
+        "oilReserves": 548654940.1425714,
+        "mineralReserves": 311930212.60847163,
+        "cultivableLand": 6486.499756835958,
+        "forest": 130530619.16395909,
+        "water": 790.6673935880433,
+        "biodiversity": 87366.04193099045
+    },
+    "economicDistribution": {
+        "education": 26.009999999999998,
+        "health": 27.040000000000003,
+        "security": 25,
+        "publicSpending": 21.950000000000003,
+        "innovation": 0,
+        "welfare": 0,
+        "preservation": 0
+    }
+}

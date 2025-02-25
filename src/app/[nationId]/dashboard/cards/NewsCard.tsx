@@ -10,7 +10,6 @@ interface NewsCardProps {
 const NewsCard: React.FC<NewsCardProps> = ({ events }) => {
     console.log('events', events)
     return (
-        // <Paper elevation={3} className="bg-green-100 p-5 rounded-xl shadow-md">
         <div className="flex flex-col space-y-1">
             <label className="text-xl">
                 Recenet News

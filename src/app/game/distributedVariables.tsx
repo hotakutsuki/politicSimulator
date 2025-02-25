@@ -42,7 +42,16 @@ const DistributedVariables = React.forwardRef(({ percentageAvailable, setAvailab
                 welfare,
                 preservation,
             }
-        )
+        ),
+        setData: (data: DistributedVariablesType) => {
+            setEducation(data.education)
+            setHealth(data.health)
+            setSecurity(data.security)
+            setPublicSpending(data.publicSpending)
+            setInnovation(data.innovation)
+            setWelfare(data.welfare)
+            setPreservation(data.preservation)
+        }
     }));
 
     function getValueFromPercentage(percentage: number) {

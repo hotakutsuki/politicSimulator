@@ -30,7 +30,7 @@ const EconomyCard: React.FC<EconomyCardProps> = ({ data }) => {
     }
 
     return (
-        <Paper elevation={3} className="bg-yellow-100 p-5 rounded-xl shadow-md">
+        <Paper elevation={3} className="p-5 rounded-xl shadow-md h-full">
             <div className="flex flex-col items-end">
                 <label className="place-self-start mb-2">
                     Datos Economicos
@@ -54,7 +54,6 @@ const EconomyCard: React.FC<EconomyCardProps> = ({ data }) => {
                             area: true,
                         },
                     ]}
-                    width={500}
                     height={200}
                 />
                 <div className="w-full grid grid-cols-3 place-items-center mt-4">

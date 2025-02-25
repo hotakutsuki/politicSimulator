@@ -11,9 +11,6 @@ import DistributedVariables, { DistributedVariablesType } from "./distributedVar
 import { Button } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import CasinoIcon from '@mui/icons-material/Casino';
-// import { askToAi } from '../../services/ai_server'
-// import { fetchAndSaveChatGPTResponse } from '../../services/api'
-// import { CatchingPokemonSharp } from "@mui/icons-material";
 
 const ConfiguracionPantalla: React.FC = () => {
   const orientationRef = React.useRef<{ getData: () => OrientationVariablesType }>(null);
@@ -22,7 +19,6 @@ const ConfiguracionPantalla: React.FC = () => {
   const [available, setPercentageAvailable] = useState(100);
 
   async function sendPromptToChatGPT() {
-    console.log('2')
     const response = await fetch("/api/GPT", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -43,13 +39,8 @@ const ConfiguracionPantalla: React.FC = () => {
       resources: resourcesRef.current?.getData(),
       distribution: distributedRef.current?.getData(),
     };
-    //DEPPSEKK
-    // const response = await askToAi()
-    //CHATGPT
 
-    console.log('1')
     await sendPromptToChatGPT()
-    console.log('5')
     // const prompt = "Genera un informe sobre el estado económico de una nación ficticia.";
     // const result = await fetchAndSaveChatGPTResponse(prompt, "simulation_result.json");
     // console.log("Resultado guardado:", result);

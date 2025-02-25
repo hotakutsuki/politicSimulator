@@ -103,7 +103,7 @@ const ProdConsuCard: React.FC<ProdConsuCardProps> = ({ data }) => {
     ];
 
     return (
-        <Paper elevation={3} className="bg-green-100 p-5 rounded-xl shadow-md">
+        <Paper elevation={3} className="p-5 rounded-xl shadow-md  h-full">
             <div className="flex flex-col items-end space-y-1">
                 <label className="place-self-start mb-2">
                     Produccion / Consumo

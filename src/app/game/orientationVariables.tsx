@@ -37,6 +37,18 @@ const OrientationVariables = React.forwardRef((props, ref) => {
     const [tradition, setTradicion] = useState(50);
 
     React.useImperativeHandle(ref, () => ({
+        setData: (data: OrientationVariablesType) => {
+            setMercado(data.freeMarket)
+            setFronteras(data.closeBorders)
+            setEstado(data.ruleLaw)
+            setConservadurismo(data.progressivism)
+            setELaico(data.secularState)
+            setJusticiaSocial(data.socialJustice)
+            setDerechosLaborales(data.laborRights)
+            setRedistribucion(data.redistributionOfWealth)
+            setCentralizacion(data.centralization)
+            setTradicion(data.tradition)
+        },
         getData: () => ({
             protectionism: market,
             freeMarket: 100 - market,

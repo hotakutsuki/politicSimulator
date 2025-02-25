@@ -35,8 +35,8 @@ const SocialCard: React.FC<SocialPropsCard> = ({ data }) => {
     }
 
     return (
-        <Paper elevation={3} className="bg-white p-5 rounded-xl shadow-md">
-            <div className="flex flex-col items-end space-y-4">
+        <Paper elevation={3} className="p-5 rounded-xl shadow-md  h-full">
+            <div className="flex flex-col items-end space-y-5">
                 <label className="place-self-start mb-2">
                     Índices Sociales
                 </label>
@@ -84,29 +84,18 @@ const SocialCard: React.FC<SocialPropsCard> = ({ data }) => {
                         <NumberFormatter value={cur.life_expectancy} decimalPlaces={0} />
                     </div>
                 </div>
-                <div className="w-full grid grid-cols-3 gap-5">
-                    <div>
+                <div className="w-full grid grid-cols-3">
+                    <div className="flex flex-col items-center">
                         <h3 className="text-sm font-semibold">Corrupción</h3>
-                        <Gauge width={100} height={100} value={data[0].corruption_index * 10} />
+                        <Gauge width={100} height={100} value={data[0].corruption_index} text={`${data[0].corruption_index} %`} />
                     </div>
-                    <div>
+                    <div className="flex flex-col items-center">
                         <h3 className="text-sm font-semibold">Felicidad</h3>
-                        <Gauge width={100} height={100} value={data[0].happiness_index} />
+                        <Gauge width={100} height={100} value={data[0].happiness_index} text={`${data[0].happiness_index} %`} />
                     </div>
-                    <div>
+                    <div className="flex flex-col items-center">
                         <h3 className="text-sm font-semibold">Migración</h3>
-                        <GaugeContainer
-                            width={100}
-                            height={100}
-                            startAngle={-110}
-                            endAngle={110}
-                            value={30}
-                        >
-                            <GaugeReferenceArc />
-                            <GaugeValueArc />
-                            <GaugePointer />
-                        </GaugeContainer>
-                        {/* <Gauge value={(data[0].social_variables.migration_index + 10) * 5} /> */}
+                        <Gauge width={100} height={100} value={data[0].migration_index} text={`${data[0].migration_index} %`} />
                     </div>
                 </div>
             </div>
